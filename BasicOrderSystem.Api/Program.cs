@@ -3,6 +3,7 @@ using System.Text;
 using BasicOrderSystem.Api.Extensions;
 using BasicOrderSystem.Application;
 using BasicOrderSystem.Domain.Entities.cs;
+using BasicOrderSystem.Infrastructure;
 using BasicOrderSystem.Infrastructure.DbContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +30,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services
     .AddApplication()
-    .AddUserIdentity(builder.Configuration)
+    .AddInfrastructure(builder.Configuration)
     .AddEndpoints(Assembly.GetExecutingAssembly());
 
 
