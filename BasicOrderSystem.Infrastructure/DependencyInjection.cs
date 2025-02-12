@@ -18,7 +18,8 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services
-            .AddAuthenticationInternal(configuration);
+            .AddAuthenticationInternal(configuration)
+            .AddAuthorizationInternal();
         return services;
     }
 
@@ -26,31 +27,39 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        
         services.AddIdentity<User, Role>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        
+        services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
             .AddJwtBearer(options =>
             {
+                options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = false,
+                    ClockSkew = TimeSpan.Zero,
                     ValidIssuer = configuration["Jwt:Issuer"],
                     ValidAudience = configuration["Jwt:Audience"],
                     IssuerSigningKey =
                         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"] ?? string.Empty))
                 };
             });
-        
+
+
         services.AddSingleton<ITokenProvider, TokenProvider>();
 
         services.AddHttpContextAccessor();
         return services;
     }
-    
+
+    private static void AddAuthorizationInternal(this IServiceCollection services)
+    {
+        services.AddAuthorization();
+    }
 }

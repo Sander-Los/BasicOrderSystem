@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace BasicOrderSystem.Tests.TestCommon.Fakes;
+namespace BasicOrderSystem.Tests.Unit.TestCommon.Fakes;
 
-public class FakeRoleManager
+public static class FakeRoleManager
 {
     public static Mock<RoleManager<Role>> Create()
     {

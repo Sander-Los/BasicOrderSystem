@@ -2,12 +2,12 @@
 using BasicOrderSystem.Application.Users.Login;
 using BasicOrderSystem.Domain.Entities.cs;
 using BasicOrderSystem.Domain.Users;
-using BasicOrderSystem.Tests.TestCommon.Fakes;
+using BasicOrderSystem.Tests.Unit.TestCommon.Fakes;
 using FluentAssertions;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 
-namespace BasicOrderSystem.Tests.Application.Users.Login;
+namespace BasicOrderSystem.Tests.Unit.Application.Users.Login;
 
 public class LoginUserCommandHandlerTests
 {

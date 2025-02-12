@@ -1,15 +1,14 @@
 ﻿using BasicOrderSystem.Application.Users.Register;
 using BasicOrderSystem.Domain.Entities.cs;
 using BasicOrderSystem.Domain.Users;
-using BasicOrderSystem.Tests.TestCommon.Fakes;
+using BasicOrderSystem.Tests.Unit.TestCommon.Fakes;
 using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using MockQueryable;
 using Moq;
 
-
-namespace BasicOrderSystem.Tests.Application.Users.Register;
+namespace BasicOrderSystem.Tests.Unit.Application.Users.Register;
 
 public class RegisterUserCommandHandlerTests
 {

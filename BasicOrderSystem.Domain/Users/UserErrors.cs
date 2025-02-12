@@ -7,13 +7,20 @@ public static class UserErrors
     public static Error NotFound(Guid userId) => Error.NotFound(
         "Users.NotFound",
         $"The user with id: '{userId}' was not found.");
+    
+    public static Error NotFound(string userId) => Error.NotFound(
+        "Users.NotFound",
+        $"The user with id: '{userId}' was not found.");
 
+    public static Error PasswordChangeFailed(string userId) => Error.Failure(
+        "Users.PasswordChangeFailed",
+        $"The password change failed for user: '{userId}'.");
     public static Error UnAuthorized() => Error.Failure(
         "Users.Unauthorized",
         "You are not authorized to perform this action.");
 
     public static readonly Error NotFoundByEmail = Error.NotFound(
-        "Users.NotFoudByEmail",
+        "Users.NotFoundByEmail",
         "The user with the specified email was not found.");
 
     public static readonly Error EmailNotUnique = Error.Conflict(

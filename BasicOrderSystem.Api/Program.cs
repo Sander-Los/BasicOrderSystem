@@ -30,13 +30,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure(builder.Configuration)
-    .AddEndpoints(Assembly.GetExecutingAssembly());
+    .AddInfrastructure(builder.Configuration);
+
+builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
 
 var app = builder.Build();
 
-app.MapEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -44,9 +46,39 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+
+// app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseAuthorization();
+app.MapEndpoints();
+
+app.Use(async (context, next) =>
+{
+    if (context.User.Identity is { IsAuthenticated: false })
+    {
+        Console.WriteLine("User is NOT authenticated");
+    }
+    else
+    {
+        Console.WriteLine($"User is authenticated as {context.User.Identity?.Name}");
+    }
+
+    await next();
+});
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Incoming Headers:");
+    foreach (var header in context.Request.Headers)
+    {
+        Console.WriteLine($"{header.Key}: {header.Value}");
+    }
+
+    await next();
+});
 
 
-app.Run();
+await app.RunAsync();
+
+public partial class Program;

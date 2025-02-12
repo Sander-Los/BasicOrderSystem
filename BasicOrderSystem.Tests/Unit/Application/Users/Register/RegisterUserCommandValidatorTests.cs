@@ -1,7 +1,7 @@
 ﻿using BasicOrderSystem.Application.Users.Register;
 using FluentValidation.TestHelper;
 
-namespace BasicOrderSystem.Tests.Application.Users.Register;
+namespace BasicOrderSystem.Tests.Unit.Application.Users.Register;
 public class RegisterUserCommandValidatorTests
 {
     private readonly RegisterUserCommandValidator _validator = new();

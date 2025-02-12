@@ -18,4 +18,9 @@
       <ProjectReference Include="..\BasicOrderSystem.Shared\BasicOrderSystem.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Users\ForgotPassword\" />
+      <Folder Include="Users\ResetPassword\" />
+    </ItemGroup>
+
 </Project>

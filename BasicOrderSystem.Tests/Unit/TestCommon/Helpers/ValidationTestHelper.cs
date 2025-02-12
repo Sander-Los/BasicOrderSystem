@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.TestHelper;
 
-namespace BasicOrderSystem.Tests.TestCommon.Helpers;
+namespace BasicOrderSystem.Tests.Unit.TestCommon.Helpers;
 
 public static class ValidationTestHelper
 {

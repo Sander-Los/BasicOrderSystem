@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 
-namespace BasicOrderSystem.Tests.TestCommon.Fakes;
+namespace BasicOrderSystem.Tests.Unit.TestCommon.Fakes;
 
-public class FakeUserManager
+public static class FakeUserManager
 {
     public static Mock<UserManager<User>> Create()
     {

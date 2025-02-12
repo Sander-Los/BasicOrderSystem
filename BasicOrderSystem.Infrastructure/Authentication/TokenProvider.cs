@@ -17,7 +17,7 @@ internal sealed class TokenProvider(IConfiguration configuration) : ITokenProvid
 
 
         var claims = new[]
-        {
+        { 
             new Claim(JwtRegisteredClaimNames.Sub, user.Id),
             new Claim(JwtRegisteredClaimNames.Email, user.Email)
         };
@@ -31,7 +31,7 @@ internal sealed class TokenProvider(IConfiguration configuration) : ITokenProvid
             issuer: configuration["Jwt:Issuer"],
             audience: configuration["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.Now.AddHours(1),
+            expires: DateTime.Now.AddHours(8),
             signingCredentials: creds
         );
 
