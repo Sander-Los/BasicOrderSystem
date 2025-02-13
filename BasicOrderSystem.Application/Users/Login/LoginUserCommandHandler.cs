@@ -12,7 +12,7 @@ public class LoginUserCommandHandler(UserManager<User> userManager, ITokenProvid
 {
     public async Task<Result<string>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await userManager.FindByNameAsync(request.Email);
+        var user = await userManager.FindByEmailAsync(request.Email);
 
         if (user is null)
         {

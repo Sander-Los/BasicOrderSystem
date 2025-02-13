@@ -12,14 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-// Ensure Kestrel listens to both HTTP and HTTPS
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5150); // HTTP
-    options.ListenAnyIP(7295, listenOptions => listenOptions.UseHttps()); // HTTPS
-});
-
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
