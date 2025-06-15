@@ -12,12 +12,6 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
-
-        builder.Entity<Role>().HasData(
-            new Role { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
-            new Role { Id = "2", Name = "SalesUser", NormalizedName = "SALES USER" },
-            new Role { Id = "3", Name = "FinanceUser", NormalizedName = "FINANCE USER" },
-            new Role { Id = "4", Name = "ShippingUser", NormalizedName = "SHIPPING USER" });
+        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }
